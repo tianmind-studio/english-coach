@@ -94,6 +94,7 @@ Then just chat normally in English. The skill will automatically correct and tea
 *(answers your question)*
 
 ---
+
 **English Corrections:**
 
 > ~~His has a great time yesterday.~~ → **He had a great time yesterday.**
@@ -111,6 +112,7 @@ Then just chat normally in English. The skill will automatically correct and tea
 *(answers your question)*
 
 ---
+
 **English Corrections:**
 
 > ~~I look forward to meet you and making a discussion about the project.~~ → **I look forward to meeting you and having a discussion about the project.**

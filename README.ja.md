@@ -26,7 +26,7 @@
 ## インストール
 
 ```bash
-npx skills add 491034170/english-coach -a claude-code -g -y
+npx skills add tianmind-studio/english-coach -a claude-code -g -y
 ```
 
 ## 使い方

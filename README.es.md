@@ -26,7 +26,7 @@ Diseñado para **hablantes no nativos de inglés** que quieren mejorar su inglé
 ## Instalación
 
 ```bash
-npx skills add 491034170/english-coach -a claude-code -g -y
+npx skills add tianmind-studio/english-coach -a claude-code -g -y
 ```
 
 ## Uso

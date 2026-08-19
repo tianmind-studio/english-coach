@@ -26,7 +26,7 @@ Thiết kế cho **người không phải bản ngữ tiếng Anh** muốn cải
 ## Cài đặt
 
 ```bash
-npx skills add 491034170/english-coach -a claude-code -g -y
+npx skills add tianmind-studio/english-coach -a claude-code -g -y
 ```
 
 ## Cách dùng

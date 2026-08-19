@@ -2,14 +2,14 @@
 
 A [Claude Code](https://docs.anthropic.com/en/docs/claude-code) skill that turns every conversation into an English practice session.
 
-[![Release](https://img.shields.io/github/v/release/491034170/english-coach)](https://github.com/491034170/english-coach/releases/latest)
-[![Live Guide](https://img.shields.io/badge/Live_Guide-GitHub_Pages-4FACFE)](https://491034170.github.io/english-coach/)
+[![Release](https://img.shields.io/github/v/release/tianmind-studio/english-coach)](https://github.com/tianmind-studio/english-coach/releases/latest)
+[![Live Guide](https://img.shields.io/badge/Live_Guide-GitHub_Pages-4FACFE)](https://tianmind-studio.github.io/english-coach/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
 [![Built for Claude Code](https://img.shields.io/badge/built%20for-Claude%20Code-8A2BE2)](https://docs.anthropic.com/en/docs/claude-code)
 
 Quick links:
-- Live guide: <https://491034170.github.io/english-coach/>
-- Latest release: <https://github.com/491034170/english-coach/releases/latest>
+- Live guide: <https://tianmind-studio.github.io/english-coach/>
+- Latest release: <https://github.com/tianmind-studio/english-coach/releases/latest>
 - Skill source: [`english-coach/SKILL.md`](./english-coach/SKILL.md)
 - Chinese README: [`README.zh-CN.md`](./README.zh-CN.md)
 - Practical scenarios: [`examples/chat-scenarios.md`](./examples/chat-scenarios.md)
@@ -47,11 +47,11 @@ Designed for **non-native English speakers** who want to improve their English t
 Option 1 — install directly from GitHub:
 
 ```bash
-npx skills add 491034170/english-coach -a claude-code -g -y
+npx skills add tianmind-studio/english-coach -a claude-code -g -y
 ```
 
 Option 2 — install from a packaged release:
-1. Open <https://github.com/491034170/english-coach/releases/latest>
+1. Open <https://github.com/tianmind-studio/english-coach/releases/latest>
 2. Download `english-coach.skill`
 3. Import it into Claude Code / Claude Desktop
 

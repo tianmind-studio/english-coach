@@ -1,17 +1,19 @@
 # English Coach
 
-A [Claude Code](https://docs.anthropic.com/en/docs/claude-code) skill that turns every conversation into an English practice session.
+A skill for **[Antigravity CLI](https://github.com/google-deepmind)** and **[Claude Code](https://docs.anthropic.com/en/docs/claude-code)** that turns every conversation and pair-programming session into an English practice session.
 
 [![Release](https://img.shields.io/github/v/release/tianmind-studio/english-coach)](https://github.com/tianmind-studio/english-coach/releases/latest)
+[![Built for Antigravity](https://img.shields.io/badge/built%20for-Antigravity%20CLI-4285F4)](https://github.com/google-deepmind)
+[![Built for Claude Code](https://img.shields.io/badge/built%20for-Claude%20Code-8A2BE2)](https://docs.anthropic.com/en/docs/claude-code)
 [![Live Guide](https://img.shields.io/badge/Live_Guide-GitHub_Pages-4FACFE)](https://tianmind-studio.github.io/english-coach/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
-[![Built for Claude Code](https://img.shields.io/badge/built%20for-Claude%20Code-8A2BE2)](https://docs.anthropic.com/en/docs/claude-code)
 
 Quick links:
 - Live guide: <https://tianmind-studio.github.io/english-coach/>
 - Latest release: <https://github.com/tianmind-studio/english-coach/releases/latest>
-- Skill source: [`english-coach/SKILL.md`](./english-coach/SKILL.md)
-- Chinese README: [`README.zh-CN.md`](./README.zh-CN.md)
+- Canonical Skill (Claude Code & Antigravity): [`english-coach/SKILL.md`](./english-coach/SKILL.md)
+- Antigravity Workspace Rule: [`rules/AGENTS.md`](./rules/AGENTS.md)
+- Installation Script: [`install.sh`](./install.sh)
 - Practical scenarios: [`examples/chat-scenarios.md`](./examples/chat-scenarios.md)
 - FAQ: [`FAQ.md`](./FAQ.md)
 
@@ -20,57 +22,114 @@ Quick links:
 
 ## Why people star this repo
 
-- It turns everyday Claude usage into English practice without changing your workflow
-- It answers first, then teaches — so it stays useful even when you are not in "study mode"
-- It works well for non-native speakers who want practical, daily improvement instead of textbook drills
+- **Zero workflow disruption**: Answers questions and writes code first, then coaches your English at the bottom of the response.
+- **Developer & Pair-Programming aware**: Does not nag or flag intentional code, shell commands, or variable names.
+- **Dual compatibility**: Native support for both **Antigravity CLI** (skills, rules, plugins) and **Claude Code**.
+- **Practical improvement**: Focuses on real communication, workplace phrasing, and common non-native mistakes instead of dry drills.
 
 ## What it does
 
-When activated, Claude will:
+When activated, your AI assistant will:
 
-1. **Answer your question normally** — it does its actual job first
-2. **Correct your English** — grammar, spelling, word choice, punctuation, expression
-3. **Teach something new** — a useful phrase, grammar tip, or more natural way to say things
+1. **Answer your question normally** — it writes the code, debugs, or answers your question first.
+2. **Correct your English** — provides structured corrections for grammar, spelling, word choice, punctuation, and expression.
+3. **Teach something new** — rotates between phrases of the day, practical grammar tips, level-up rephrasings, and common mistakes.
 
-Designed for **non-native English speakers** who want to improve their English through real daily use rather than textbook exercises.
+Designed for **non-native English speakers** who want to improve their English through daily work.
 
 ## Features
 
-- Categorized corrections (Spelling / Grammar / Word Choice / Punctuation / Expression)
-- Adapts to your level — focuses on basics for beginners, naturalness for advanced users
-- Tracks recurring mistakes and highlights patterns
-- Rotates learning content: idioms, grammar tips, advanced rephrasing, common mistakes
-- Friendly tone — like a helpful coworker, not a strict teacher
+- **Categorized corrections**: `Spelling` / `Grammar` / `Word Choice` / `Punctuation` / `Expression`.
+- **Adaptive leveling**: Gentle on basics for beginners; focuses on nuances, idiomatic phrasing, and flow for advanced speakers.
+- **Mistake tracking**: Identifies and flags recurring patterns over multiple messages.
+- **Rotates learning bites**: Idioms, clear grammar formulas, advanced rephrasings, and frequent non-native traps.
+- **Friendly tone**: Like an encouraging coworker, not an exam proctor.
 
-## Install
+---
 
-Option 1 — install directly from GitHub:
+## Installation
 
+### For Antigravity CLI
+
+You can install English Coach using the provided [`install.sh`](./install.sh) script, or copy the files directly into your project or configuration folder.
+
+#### Option A: Interactive Installer
+
+Run the installer wizard:
+
+```bash
+chmod +x ./install.sh
+./install.sh
+```
+
+#### Option B: Fast CLI Commands
+
+**1. Install globally (on-demand across all projects):**
+```bash
+./install.sh --global
+# Installs to ~/.gemini/config/skills/english-coach/SKILL.md
+```
+
+**2. Install in your current project workspace:**
+```bash
+./install.sh --local
+# Installs to ./.agents/skills/english-coach/SKILL.md
+```
+
+**3. Install as an Always-On workspace rule:**
+```bash
+./install.sh --rule
+# Installs to ./AGENTS.md for continuous coaching on every turn
+```
+
+**4. Install as a complete plugin bundle:**
+```bash
+./install.sh --plugin-local
+# Installs to ./.agents/plugins/english-coach/
+```
+
+---
+
+### For Claude Code
+
+**Option 1 — via npx:**
 ```bash
 npx skills add tianmind-studio/english-coach -a claude-code -g -y
 ```
 
-Option 2 — install from a packaged release:
+**Option 2 — from release package:**
 1. Open <https://github.com/tianmind-studio/english-coach/releases/latest>
 2. Download `english-coach.skill`
 3. Import it into Claude Code / Claude Desktop
 
+---
+
 ## Usage
 
-In Claude Code, type:
+### In Antigravity CLI
 
+- **On-Demand Mode (Skill):**
+  Type `/english-coach` or simply say:
+  > Let's practice English while working on this feature.
+- **Continuous Mode (Rule):**
+  If you installed the `AGENTS.md` rule or enabled the plugin, English Coach will automatically coach your English on every turn without needing explicit invocation.
+
+### In Claude Code
+
+In your terminal or chat, type:
 ```
 /english-coach
 ```
+Then chat or work normally.
 
-Then just chat normally in English. The skill will automatically correct and teach as you go.
+---
 
 ## Example 1
 
 **You say:**
 > dose this work for practice my english?
 
-**Claude responds:**
+**Assistant responds:**
 
 *(answers your question)*
 
@@ -84,12 +143,14 @@ Then just chat normally in English. The skill will automatically correct and tea
 > **[Grammar]** "for practice" → "for practicing" — after "for", use the -ing form
 > **[Punctuation]** "english" → "English" — language names are always capitalized
 
+---
+
 ## Example 2
 
 **You say:**
 > His has a great time yesterday.
 
-**Claude responds:**
+**Assistant responds:**
 
 *(answers your question)*
 
@@ -102,32 +163,37 @@ Then just chat normally in English. The skill will automatically correct and tea
 > **[Grammar]** "His" → "He" — "His" is possessive, "He" is a subject pronoun
 > **[Grammar]** "has" → "had" — "yesterday" indicates past time, so the verb should be past tense
 
-## Example 3
+---
+
+## Example 3 (Developer Context)
 
 **You say:**
-> I look forward to meet you and making a discussion about the project.
+> I create new PR for fix bug in auth controller and make discussion with team.
 
-**Claude responds:**
+**Assistant responds:**
 
-*(answers your question)*
+*(reviews your PR / provides technical assistance)*
 
 ---
 
 **English Corrections:**
 
-> ~~I look forward to meet you and making a discussion about the project.~~ → **I look forward to meeting you and having a discussion about the project.**
+> ~~I create new PR for fix bug in auth controller and make discussion with team.~~ → **I created a new PR to fix the bug in the auth controller and had a discussion with the team.**
 >
-> **[Grammar]** "look forward to meet you" → "look forward to meeting you" — After "look forward to," use the -ing form (gerund). The "to" here is a preposition, not part of an infinitive.
-> 
-> **[Word Choice]** "making a discussion" → "having a discussion" (or simply discussing) — In English, we "have" a discussion or "hold" a discussion — we don't "make" one.
+> **[Grammar]** "I create" → "I created" — use past tense for completed actions.
+> **[Grammar]** "for fix" → "to fix" — use "to + infinitive" to express purpose.
+> **[Grammar]** "new PR" / "auth controller" → "a new PR" / "the auth controller" — add missing articles.
+> **[Word Choice]** "make discussion" → "had a discussion" — we "have" a discussion in English.
 
-**Phrase of the day:** "get the hang of" — to become comfortable with something new.
-*Example: "I'm starting to get the hang of English prepositions."*
-
-## License
-
-MIT
+**Phrase of the day:** "walk through" — to explain or examine something step-by-step.
+*Example: "Let's walk through the auth flow during tomorrow's standup."*
 
 ---
 
-If this skill helps you practice English more consistently, consider starring the repo so more learners can find it.
+## License
+
+[MIT](./LICENSE)
+
+---
+
+If this helps you practice English more consistently, consider starring the repo so more learners can find it.

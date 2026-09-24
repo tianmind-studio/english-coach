@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CET-6 词汇学习 | Vocabulary Study</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📚</text></svg>">
+  <link rel="stylesheet" href="/src/styles/main.css">
+</head>
+<body>
+  <div id="app">
+    <nav class="navbar">
+      <div class="nav-brand">
+        <span class="nav-logo">📚</span>
+        <span class="nav-title">CET-6 词汇学习</span>
+      </div>
+      <div class="nav-links">
+        <button class="nav-link active" data-page="home">首页</button>
+        <button class="nav-link" data-page="flashcards">单词卡片</button>
+        <button class="nav-link" data-page="quiz">词汇测验</button>
+        <button class="nav-link" data-page="progress">学习进度</button>
+      </div>
+    </nav>
+
+    <main class="main-content">
+      <!-- Home Page -->
+      <section id="page-home" class="page active">
+        <div class="hero">
+          <h1>CET-6 词汇突破</h1>
+          <p class="hero-subtitle">每天学习，持续进步 | Study daily, progress steadily</p>
+          <div class="hero-stats">
+            <div class="stat-card">
+              <span class="stat-number" id="total-words">0</span>
+              <span class="stat-label">总词汇量</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-number" id="learned-words">0</span>
+              <span class="stat-label">已掌握</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-number" id="study-streak">0</span>
+              <span class="stat-label">连续学习天数</span>
+            </div>
+          </div>
+          <div class="hero-actions">
+            <button class="btn btn-primary" data-action="start-flashcards">
+              <span>开始学习</span>
+              <span class="btn-icon">→</span>
+            </button>
+            <button class="btn btn-secondary" data-action="start-quiz">
+              <span>测验检测</span>
+              <span class="btn-icon">✓</span>
+            </button>
+          </div>
+        </div>
+        
+        <div class="features">
+          <h2>学习功能</h2>
+          <div class="feature-grid">
+            <div class="feature-card">
+              <div class="feature-icon">🎴</div>
+              <h3>智能卡片</h3>
+              <p>翻转卡片学习单词，支持标记已掌握</p>
+            </div>
+            <div class="feature-card">
+              <div class="feature-icon">📝</div>
+              <h3>词汇测验</h3>
+              <p>四选一测试，检验学习效果</p>
+            </div>
+            <div class="feature-card">
+              <div class="feature-icon">📊</div>
+              <h3>进度追踪</h3>
+              <p>本地存储学习数据，随时查看进度</p>
+            </div>
+            <div class="feature-card">
+              <div class="feature-icon">🎯</div>
+              <h3>核心词汇</h3>
+              <p>精选CET-6高频词汇，针对性学习</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Flashcards Page -->
+      <section id="page-flashcards" class="page">
+        <div class="flashcard-container">
+          <div class="flashcard-header">
+            <span class="flashcard-counter">第 <span id="current-card">1</span> / <span id="total-cards">0</span> 个</span>
+            <div class="flashcard-filters">
+              <button class="filter-btn active" data-filter="all">全部</button>
+              <button class="filter-btn" data-filter="new">未学习</button>
+              <button class="filter-btn" data-filter="learning">学习中</button>
+              <button class="filter-btn" data-filter="mastered">已掌握</button>
+            </div>
+          </div>
+          
+          <div class="flashcard-wrapper">
+            <div class="flashcard" id="flashcard">
+              <div class="flashcard-inner">
+                <div class="flashcard-front">
+                  <span class="word" id="card-word">Loading...</span>
+                  <span class="phonetic" id="card-phonetic"></span>
+                </div>
+                <div class="flashcard-back">
+                  <span class="translation" id="card-translation">加载中...</span>
+                  <span class="example" id="card-example"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="flashcard-controls">
+            <button class="control-btn" id="btn-prev" title="上一个">
+              <span>←</span>
+            </button>
+            <button class="control-btn status-btn" id="btn-mark-learning" title="标记为学习中">
+              <span>📖</span>
+            </button>
+            <button class="control-btn status-btn" id="btn-mark-mastered" title="标记为已掌握">
+              <span>✓</span>
+            </button>
+            <button class="control-btn" id="btn-next" title="下一个">
+              <span>→</span>
+            </button>
+          </div>
+          
+          <p class="flashcard-hint">点击卡片翻转查看释义 | Click to flip</p>
+        </div>
+      </section>
+
+      <!-- Quiz Page -->
+      <section id="page-quiz" class="page">
+        <div class="quiz-container">
+          <div class="quiz-header">
+            <span class="quiz-progress">问题 <span id="quiz-current">1</span> / <span id="quiz-total">10</span></span>
+            <span class="quiz-score">得分: <span id="quiz-score">0</span></span>
+          </div>
+          
+          <div class="quiz-card" id="quiz-card">
+            <div class="quiz-question">
+              <span class="quiz-word" id="quiz-word">Loading...</span>
+              <span class="quiz-phonetic" id="quiz-phonetic"></span>
+            </div>
+            <div class="quiz-options" id="quiz-options">
+              <!-- Options will be inserted here -->
+            </div>
+          </div>
+          
+          <div class="quiz-result" id="quiz-result" style="display: none;">
+            <div class="result-icon">🎉</div>
+            <h2>测验完成!</h2>
+            <p class="result-score">最终得分: <span id="final-score">0</span> / <span id="final-total">10</span></p>
+            <p class="result-percent" id="result-percent">正确率: 0%</p>
+            <button class="btn btn-primary" id="btn-restart-quiz">再测一次</button>
+          </div>
+          
+          <div class="quiz-start" id="quiz-start">
+            <h2>CET-6 词汇测验</h2>
+            <p>测试你的词汇掌握程度</p>
+            <div class="quiz-settings">
+              <label>
+                题目数量:
+                <select id="quiz-count">
+                  <option value="10">10题</option>
+                  <option value="20">20题</option>
+                  <option value="30">30题</option>
+                  <option value="50">50题</option>
+                </select>
+              </label>
+            </div>
+            <button class="btn btn-primary" id="btn-start-quiz">开始测验</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Progress Page -->
+      <section id="page-progress" class="page">
+        <div class="progress-container">
+          <h2>学习进度</h2>
+          
+          <div class="progress-overview">
+            <div class="progress-card">
+              <div class="progress-ring">
+                <svg viewBox="0 0 100 100">
+                  <circle class="progress-ring-bg" cx="50" cy="50" r="45"/>
+                  <circle class="progress-ring-fill" cx="50" cy="50" r="45" id="progress-ring"/>
+                </svg>
+                <span class="progress-percent" id="progress-percent">0%</span>
+              </div>
+              <span class="progress-label">总体进度</span>
+            </div>
+            
+            <div class="progress-stats">
+              <div class="stat-item">
+                <span class="stat-icon new">○</span>
+                <span class="stat-name">未学习</span>
+                <span class="stat-value" id="stat-new">0</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-icon learning">◐</span>
+                <span class="stat-name">学习中</span>
+                <span class="stat-value" id="stat-learning">0</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-icon mastered">●</span>
+                <span class="stat-name">已掌握</span>
+                <span class="stat-value" id="stat-mastered">0</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="progress-history">
+            <h3>学习记录</h3>
+            <div class="history-list" id="history-list">
+              <p class="empty-message">暂无学习记录</p>
+            </div>
+          </div>
+          
+          <div class="progress-actions">
+            <button class="btn btn-danger" id="btn-reset-progress">重置进度</button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>CET-6 词汇学习 | 加油，你一定可以的! 💪</p>
+    </footer>
+  </div>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>

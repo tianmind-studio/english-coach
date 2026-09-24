@@ -1,0 +1,17 @@
+{
+  "name": "cet6-study-site",
+  "version": "1.0.0",
+  "description": "Lightweight CET-6 vocabulary study site with flashcards and quizzes",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "serve": "npx serve dist"
+  },
+  "devDependencies": {
+    "vite": "^5.0.0"
+  },
+  "keywords": ["cet6", "english", "vocabulary", "flashcards", "study"],
+  "license": "MIT"
+}

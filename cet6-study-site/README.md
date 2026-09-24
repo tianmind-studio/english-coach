@@ -1,17 +1,50 @@
-# CET-6 词汇学习站 | CET-6 Vocabulary Study Site
+# CET-6 备考助手 | CET-6 Study Helper
 
-A lightweight, static CET-6 (College English Test - Band 6) vocabulary study application with flashcards, quizzes, and progress tracking.
+A comprehensive, lightweight CET-6 (College English Test - Band 6) study application with vocabulary flashcards, reading comprehension, writing practice, quizzes, and progress tracking.
 
-为女朋友准备的六级词汇学习小站 💕
+为女朋友准备的六级备考助手 💕
 
 ## Features | 功能特点
 
-- 🎴 **Flashcards 单词卡片** - Flip cards to learn vocabulary with phonetics and example sentences
-- 📝 **Quiz Mode 词汇测验** - Multiple choice quizzes to test your knowledge
-- 📊 **Progress Tracking 进度追踪** - Local storage saves your learning progress
-- 🎯 **100+ CET-6 Words** - High-frequency vocabulary for the exam
-- 📱 **Responsive Design** - Works on desktop and mobile
-- 🚀 **No Backend Required** - Pure static site, deploy anywhere
+### 🎴 Vocabulary Flashcards 单词卡片
+- Flip cards to learn vocabulary with phonetics and example sentences
+- Mark words as "new", "learning", or "mastered"
+- Filter cards by learning status
+- Keyboard navigation (← → Space/Enter)
+- 100+ high-frequency CET-6 words
+
+### 📝 Vocabulary Quiz 词汇测验
+- Multiple choice quizzes (10/20/30/50 questions)
+- Immediate feedback on answers
+- Score tracking and result summary
+
+### 📖 Reading Comprehension 阅读理解
+- 3 CET-6 style passages with varying difficulty
+- 5 comprehension questions per passage
+- Answer explanations in Chinese
+- Progress tracking for completed passages
+
+### ✍️ Writing Practice 写作练习
+- 10 essay prompts covering common CET-6 topics
+- Local draft saving with auto-save
+- Word count tracking (target: 150-200 words)
+- Self-assessment rubric checklist with 16 criteria across 4 categories:
+  - Content & Ideas (内容与观点)
+  - Structure & Organization (结构与组织)
+  - Language & Expression (语言与表达)
+  - Format & Conventions (格式与规范)
+
+### 📊 Learning Dashboard 学习面板
+- Study streak counter with motivational messages
+- Visual progress ring showing vocabulary mastery
+- Quiz history with scores
+- Weak words list (words marked as "learning")
+- Reading and writing progress overview
+
+### 💾 Progress Tracking 进度追踪
+- All progress saved to localStorage
+- No account or server required
+- Data stays on your device
 
 ## Quick Start | 快速开始
 
@@ -37,25 +70,18 @@ Visit `http://localhost:3000` in your browser.
 
 ### Option 2: Using Any Static Server
 
-Since this is a pure static site with ES modules, you can use any static file server:
-
 ```bash
 cd cet6-study-site
 
 # Using Python
 python -m http.server 3000
 
-# Using Node.js serve (install globally first: npm i -g serve)
+# Using Node.js serve
 npx serve .
 
 # Using PHP
 php -S localhost:3000
 ```
-
-### Option 3: Direct Open (Modern Browsers)
-
-Modern browsers may have CORS restrictions for ES modules loaded from `file://`. 
-For best results, use a local server as described above.
 
 ## Project Structure | 项目结构
 
@@ -69,7 +95,9 @@ cet6-study-site/
 │   ├── styles/
 │   │   └── main.css        # All styles
 │   ├── data/
-│   │   └── vocabulary.js   # CET-6 word list (100+ words)
+│   │   ├── vocabulary.js   # CET-6 word list (100+ words)
+│   │   ├── reading.js      # Reading passages (3 articles)
+│   │   └── writing.js      # Writing prompts (10 topics) + rubric
 │   └── utils/
 │       └── storage.js      # localStorage utilities
 └── public/                 # Static assets (if any)
@@ -102,20 +130,36 @@ When on the flashcard page:
 - `←` / `→` - Navigate between cards
 - `Space` / `Enter` - Flip card
 
-## Data Storage | 数据存储
+## Content Overview | 内容概览
 
-All learning progress is stored in browser's localStorage:
-- Word learning status (new/learning/mastered)
-- Quiz history and scores
-- Study streak
+### Vocabulary (100+ words)
+High-frequency CET-6 vocabulary including:
+- Academic verbs (abolish, accommodate, acknowledge, etc.)
+- Adjectives (absurd, abundant, acute, etc.)
+- Nouns (accommodation, acquisition, allegiance, etc.)
 
-No account or server required. Your data stays on your device.
+### Reading Passages (3 articles)
+1. **The Future of Remote Work** (中等难度, 280词)
+2. **Artificial Intelligence in Healthcare** (较难, 310词)
+3. **Sustainable Urban Development** (中等难度, 295词)
+
+### Writing Prompts (10 topics)
+1. Technology and Daily Life (科技与生活)
+2. Educational Equality (教育公平)
+3. Environmental Protection (环境保护)
+4. Career Choices (职业选择)
+5. Tradition vs. Modernity (传统与现代)
+6. Social Media (社交媒体)
+7. Globalization (全球化)
+8. Healthy Lifestyle (健康生活)
+9. Lifelong Learning (终身学习)
+10. Artificial Intelligence (人工智能)
 
 ## Customization | 自定义
 
 ### Adding More Words
 
-Edit `src/data/vocabulary.js` to add more vocabulary:
+Edit `src/data/vocabulary.js`:
 
 ```javascript
 { 
@@ -123,6 +167,45 @@ Edit `src/data/vocabulary.js` to add more vocabulary:
   phonetic: "/ɪɡˈzæmpl/", 
   translation: "n. 例子", 
   example: "This is an example sentence." 
+}
+```
+
+### Adding Reading Passages
+
+Edit `src/data/reading.js`:
+
+```javascript
+{
+  id: 4,
+  title: "Your Passage Title",
+  difficulty: "中等",
+  wordCount: 300,
+  passage: "Your passage text...",
+  questions: [
+    {
+      id: 1,
+      question: "Question text?",
+      options: ["A. Option 1", "B. Option 2", "C. Option 3", "D. Option 4"],
+      correctAnswer: 0,
+      explanation: "解释..."
+    }
+  ]
+}
+```
+
+### Adding Writing Prompts
+
+Edit `src/data/writing.js`:
+
+```javascript
+{
+  id: 11,
+  title: "Topic Title | 中文标题",
+  type: "议论文",
+  difficulty: "中等",
+  prompt: "Writing directions...",
+  tips: ["提示1", "提示2"],
+  wordLimit: "150-200 words"
 }
 ```
 

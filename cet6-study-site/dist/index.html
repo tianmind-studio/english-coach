@@ -3,23 +3,25 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CET-6 词汇学习 | Vocabulary Study</title>
+  <title>CET-6 备考助手 | Study Helper</title>
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📚</text></svg>">
-  <script type="module" crossorigin src="/assets/index-D0P-JZDt.js"></script>
-  <link rel="stylesheet" crossorigin href="/assets/index-B_a_z92G.css">
+  <script type="module" crossorigin src="/assets/index-BTSq4s2o.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/index-DHSAgxyO.css">
 </head>
 <body>
   <div id="app">
     <nav class="navbar">
       <div class="nav-brand">
         <span class="nav-logo">📚</span>
-        <span class="nav-title">CET-6 词汇学习</span>
+        <span class="nav-title">CET-6 备考助手</span>
       </div>
       <div class="nav-links">
         <button class="nav-link active" data-page="home">首页</button>
+        <button class="nav-link" data-page="dashboard">学习面板</button>
         <button class="nav-link" data-page="flashcards">单词卡片</button>
         <button class="nav-link" data-page="quiz">词汇测验</button>
-        <button class="nav-link" data-page="progress">学习进度</button>
+        <button class="nav-link" data-page="reading">阅读理解</button>
+        <button class="nav-link" data-page="writing">写作练习</button>
       </div>
     </nav>
 
@@ -27,8 +29,8 @@
       <!-- Home Page -->
       <section id="page-home" class="page active">
         <div class="hero">
-          <h1>CET-6 词汇突破</h1>
-          <p class="hero-subtitle">每天学习，持续进步 | Study daily, progress steadily</p>
+          <h1>CET-6 备考助手</h1>
+          <p class="hero-subtitle">词汇 · 阅读 · 写作 | 全方位备考</p>
           <div class="hero-stats">
             <div class="stat-card">
               <span class="stat-number" id="total-words">0</span>
@@ -44,13 +46,13 @@
             </div>
           </div>
           <div class="hero-actions">
-            <button class="btn btn-primary" data-action="start-flashcards">
-              <span>开始学习</span>
-              <span class="btn-icon">→</span>
+            <button class="btn btn-primary" data-action="start-dashboard">
+              <span>查看学习面板</span>
+              <span class="btn-icon">📊</span>
             </button>
-            <button class="btn btn-secondary" data-action="start-quiz">
-              <span>测验检测</span>
-              <span class="btn-icon">✓</span>
+            <button class="btn btn-secondary" data-action="start-flashcards">
+              <span>开始背单词</span>
+              <span class="btn-icon">→</span>
             </button>
           </div>
         </div>
@@ -58,25 +60,35 @@
         <div class="features">
           <h2>学习功能</h2>
           <div class="feature-grid">
-            <div class="feature-card">
+            <div class="feature-card" data-action="goto-flashcards">
               <div class="feature-icon">🎴</div>
               <h3>智能卡片</h3>
               <p>翻转卡片学习单词，支持标记已掌握</p>
             </div>
-            <div class="feature-card">
+            <div class="feature-card" data-action="goto-quiz">
               <div class="feature-icon">📝</div>
               <h3>词汇测验</h3>
               <p>四选一测试，检验学习效果</p>
             </div>
-            <div class="feature-card">
+            <div class="feature-card" data-action="goto-reading">
+              <div class="feature-icon">📖</div>
+              <h3>阅读理解</h3>
+              <p>CET-6风格短文，培养阅读能力</p>
+            </div>
+            <div class="feature-card" data-action="goto-writing">
+              <div class="feature-icon">✍️</div>
+              <h3>写作练习</h3>
+              <p>精选写作话题，自评检查清单</p>
+            </div>
+            <div class="feature-card" data-action="goto-dashboard">
               <div class="feature-icon">📊</div>
-              <h3>进度追踪</h3>
-              <p>本地存储学习数据，随时查看进度</p>
+              <h3>学习面板</h3>
+              <p>追踪进度、弱项词汇、测验历史</p>
             </div>
             <div class="feature-card">
               <div class="feature-icon">🎯</div>
               <h3>核心词汇</h3>
-              <p>精选CET-6高频词汇，针对性学习</p>
+              <p>精选100+ CET-6高频词汇</p>
             </div>
           </div>
         </div>
@@ -174,58 +186,203 @@
         </div>
       </section>
 
-      <!-- Progress Page -->
-      <section id="page-progress" class="page">
-        <div class="progress-container">
-          <h2>学习进度</h2>
+      <!-- Dashboard Page -->
+      <section id="page-dashboard" class="page">
+        <div class="dashboard-container">
+          <h2>📊 学习面板</h2>
           
-          <div class="progress-overview">
-            <div class="progress-card">
-              <div class="progress-ring">
-                <svg viewBox="0 0 100 100">
-                  <circle class="progress-ring-bg" cx="50" cy="50" r="45"/>
-                  <circle class="progress-ring-fill" cx="50" cy="50" r="45" id="progress-ring"/>
-                </svg>
-                <span class="progress-percent" id="progress-percent">0%</span>
+          <div class="dashboard-grid">
+            <!-- Streak & Overview -->
+            <div class="dashboard-card streak-card">
+              <div class="streak-display">
+                <span class="streak-number" id="dash-streak">0</span>
+                <span class="streak-label">天连续学习</span>
               </div>
-              <span class="progress-label">总体进度</span>
+              <div class="streak-message" id="streak-message">开始你的学习之旅吧！</div>
             </div>
             
-            <div class="progress-stats">
-              <div class="stat-item">
-                <span class="stat-icon new">○</span>
-                <span class="stat-name">未学习</span>
-                <span class="stat-value" id="stat-new">0</span>
+            <!-- Progress Ring -->
+            <div class="dashboard-card">
+              <h3>词汇掌握进度</h3>
+              <div class="progress-ring-container">
+                <div class="progress-ring">
+                  <svg viewBox="0 0 100 100">
+                    <circle class="progress-ring-bg" cx="50" cy="50" r="45"/>
+                    <circle class="progress-ring-fill" cx="50" cy="50" r="45" id="dash-progress-ring"/>
+                  </svg>
+                  <span class="progress-percent" id="dash-progress-percent">0%</span>
+                </div>
               </div>
-              <div class="stat-item">
-                <span class="stat-icon learning">◐</span>
-                <span class="stat-name">学习中</span>
-                <span class="stat-value" id="stat-learning">0</span>
+              <div class="progress-breakdown">
+                <div class="breakdown-item">
+                  <span class="dot new"></span>
+                  <span>未学习: <strong id="dash-new">0</strong></span>
+                </div>
+                <div class="breakdown-item">
+                  <span class="dot learning"></span>
+                  <span>学习中: <strong id="dash-learning">0</strong></span>
+                </div>
+                <div class="breakdown-item">
+                  <span class="dot mastered"></span>
+                  <span>已掌握: <strong id="dash-mastered">0</strong></span>
+                </div>
               </div>
-              <div class="stat-item">
-                <span class="stat-icon mastered">●</span>
-                <span class="stat-name">已掌握</span>
-                <span class="stat-value" id="stat-mastered">0</span>
+            </div>
+            
+            <!-- Quiz History -->
+            <div class="dashboard-card">
+              <h3>📝 测验历史</h3>
+              <div class="quiz-history-list" id="dash-quiz-history">
+                <p class="empty-message">暂无测验记录</p>
               </div>
+              <button class="btn btn-secondary btn-small" data-action="goto-quiz">去测验</button>
+            </div>
+            
+            <!-- Weak Words -->
+            <div class="dashboard-card weak-words-card">
+              <h3>⚠️ 需要复习的单词</h3>
+              <p class="card-subtitle">标记为"学习中"的词汇</p>
+              <div class="weak-words-list" id="dash-weak-words">
+                <p class="empty-message">太棒了！没有需要复习的单词</p>
+              </div>
+              <button class="btn btn-secondary btn-small" data-action="review-weak">复习弱项词汇</button>
+            </div>
+            
+            <!-- Reading Progress -->
+            <div class="dashboard-card">
+              <h3>📖 阅读进度</h3>
+              <div class="reading-progress" id="dash-reading-progress">
+                <p class="empty-message">暂无阅读记录</p>
+              </div>
+              <button class="btn btn-secondary btn-small" data-action="goto-reading">去阅读</button>
+            </div>
+            
+            <!-- Writing Progress -->
+            <div class="dashboard-card">
+              <h3>✍️ 写作进度</h3>
+              <div class="writing-progress" id="dash-writing-progress">
+                <p class="empty-message">暂无写作记录</p>
+              </div>
+              <button class="btn btn-secondary btn-small" data-action="goto-writing">去写作</button>
             </div>
           </div>
           
-          <div class="progress-history">
-            <h3>学习记录</h3>
-            <div class="history-list" id="history-list">
-              <p class="empty-message">暂无学习记录</p>
-            </div>
+          <div class="dashboard-actions">
+            <button class="btn btn-danger" id="btn-reset-all">重置所有进度</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Reading Comprehension Page -->
+      <section id="page-reading" class="page">
+        <div class="reading-container">
+          <div class="reading-header">
+            <h2>📖 阅读理解</h2>
+            <p>CET-6 风格短文阅读练习</p>
           </div>
           
-          <div class="progress-actions">
-            <button class="btn btn-danger" id="btn-reset-progress">重置进度</button>
+          <!-- Passage Selection -->
+          <div class="passage-list" id="passage-list">
+            <!-- Passages will be inserted here -->
+          </div>
+          
+          <!-- Reading View -->
+          <div class="reading-view" id="reading-view" style="display: none;">
+            <div class="reading-nav">
+              <button class="btn btn-secondary btn-small" id="btn-back-to-passages">← 返回列表</button>
+              <span class="reading-info">
+                <span id="reading-difficulty">难度: 中等</span>
+                <span id="reading-wordcount">词数: 0</span>
+              </span>
+            </div>
+            
+            <div class="passage-content">
+              <h3 id="passage-title">Passage Title</h3>
+              <div class="passage-text" id="passage-text"></div>
+            </div>
+            
+            <div class="reading-questions" id="reading-questions">
+              <!-- Questions will be inserted here -->
+            </div>
+            
+            <div class="reading-result" id="reading-result" style="display: none;">
+              <div class="result-summary">
+                <span class="result-icon">📊</span>
+                <h3>阅读完成！</h3>
+                <p>得分: <span id="reading-score">0</span> / <span id="reading-total">5</span></p>
+              </div>
+              <div class="result-actions">
+                <button class="btn btn-primary" id="btn-show-explanations">查看解析</button>
+                <button class="btn btn-secondary" id="btn-next-passage">下一篇</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Writing Practice Page -->
+      <section id="page-writing" class="page">
+        <div class="writing-container">
+          <div class="writing-header">
+            <h2>✍️ 写作练习</h2>
+            <p>CET-6 写作题型训练</p>
+          </div>
+          
+          <!-- Prompt Selection -->
+          <div class="prompt-list" id="prompt-list">
+            <!-- Prompts will be inserted here -->
+          </div>
+          
+          <!-- Writing View -->
+          <div class="writing-view" id="writing-view" style="display: none;">
+            <div class="writing-nav">
+              <button class="btn btn-secondary btn-small" id="btn-back-to-prompts">← 返回列表</button>
+              <span class="writing-info">
+                <span id="writing-type">类型: 议论文</span>
+                <span id="writing-difficulty">难度: 中等</span>
+              </span>
+            </div>
+            
+            <div class="prompt-content">
+              <h3 id="prompt-title">Writing Prompt</h3>
+              <div class="prompt-text" id="prompt-text"></div>
+              <div class="prompt-tips">
+                <h4>写作提示</h4>
+                <ul id="prompt-tips-list"></ul>
+              </div>
+            </div>
+            
+            <div class="writing-area">
+              <div class="textarea-header">
+                <label for="draft-textarea">你的作文草稿</label>
+                <span class="word-count">字数: <span id="draft-word-count">0</span> / 150-200</span>
+              </div>
+              <textarea id="draft-textarea" placeholder="在这里写下你的作文...&#10;&#10;Tips:&#10;- 先构思大纲再动笔&#10;- 注意段落划分&#10;- 使用多样的句式和词汇"></textarea>
+              <div class="textarea-actions">
+                <button class="btn btn-secondary btn-small" id="btn-save-draft">💾 保存草稿</button>
+                <button class="btn btn-secondary btn-small" id="btn-clear-draft">🗑️ 清空</button>
+              </div>
+            </div>
+            
+            <div class="rubric-section">
+              <h4>📋 自评检查清单</h4>
+              <p class="rubric-intro">完成作文后，对照以下标准进行自我评估：</p>
+              <div class="rubric-checklist" id="rubric-checklist">
+                <!-- Checklist will be inserted here -->
+              </div>
+              <div class="rubric-score">
+                <span>自评完成度: </span>
+                <span id="rubric-score">0</span> / <span id="rubric-total">16</span>
+                <span class="rubric-percent" id="rubric-percent">(0%)</span>
+              </div>
+            </div>
           </div>
         </div>
       </section>
     </main>
 
     <footer class="footer">
-      <p>CET-6 词汇学习 | 加油，你一定可以的! 💪</p>
+      <p>CET-6 备考助手 | 加油，你一定可以的! 💪</p>
     </footer>
   </div>
 

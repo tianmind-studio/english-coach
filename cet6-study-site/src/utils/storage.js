@@ -1,5 +1,10 @@
 const STORAGE_KEY = 'cet6_study_progress';
+const READING_KEY = 'cet6_reading_progress';
+const WRITING_KEY = 'cet6_writing_drafts';
 
+// ================================
+// MAIN PROGRESS
+// ================================
 export function getProgress() {
   try {
     const data = localStorage.getItem(STORAGE_KEY);
@@ -92,6 +97,10 @@ export function addQuizResult(score, total) {
 export function resetProgress() {
   const defaultProgress = getDefaultProgress();
   saveProgress(defaultProgress);
+  
+  localStorage.removeItem(READING_KEY);
+  localStorage.removeItem(WRITING_KEY);
+  
   return defaultProgress;
 }
 
@@ -112,4 +121,63 @@ export function getStatistics(vocabulary) {
   });
   
   return stats;
+}
+
+// ================================
+// READING PROGRESS
+// ================================
+export function getReadingProgress() {
+  try {
+    const data = localStorage.getItem(READING_KEY);
+    return data ? JSON.parse(data) : {};
+  } catch (e) {
+    console.error('Error reading reading progress:', e);
+    return {};
+  }
+}
+
+export function saveReadingProgress(passageId, progressData) {
+  try {
+    const allProgress = getReadingProgress();
+    allProgress[passageId] = progressData;
+    localStorage.setItem(READING_KEY, JSON.stringify(allProgress));
+    
+    const mainProgress = getProgress();
+    updateStudyStreak(mainProgress);
+    saveProgress(mainProgress);
+  } catch (e) {
+    console.error('Error saving reading progress:', e);
+  }
+}
+
+// ================================
+// WRITING DRAFTS
+// ================================
+export function getWritingProgress() {
+  try {
+    const data = localStorage.getItem(WRITING_KEY);
+    return data ? JSON.parse(data) : {};
+  } catch (e) {
+    console.error('Error reading writing progress:', e);
+    return {};
+  }
+}
+
+export function getWritingDraft(promptId) {
+  const progress = getWritingProgress();
+  return progress[promptId] || null;
+}
+
+export function saveWritingDraft(promptId, draftData) {
+  try {
+    const allProgress = getWritingProgress();
+    allProgress[promptId] = draftData;
+    localStorage.setItem(WRITING_KEY, JSON.stringify(allProgress));
+    
+    const mainProgress = getProgress();
+    updateStudyStreak(mainProgress);
+    saveProgress(mainProgress);
+  } catch (e) {
+    console.error('Error saving writing draft:', e);
+  }
 }
